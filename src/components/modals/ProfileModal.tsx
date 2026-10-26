@@ -182,7 +182,7 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div className="flex items-center gap-2 text-[#0F172A]">
                 <Phone size={14} className="text-[#00BAF2]" />
-                <span>+91 98112 88910 (Registered Mobile)</span>
+                <span>+91 1234567890 (Registered Mobile)</span>
               </div>
               <div className="flex items-center gap-2 text-[#0F172A]">
                 <Mail size={14} className="text-[#00BAF2]" />
@@ -214,3 +214,4 @@ export const ProfileModal: React.FC<ProfileModalProps> = ({
     </div>
   );
 };
+

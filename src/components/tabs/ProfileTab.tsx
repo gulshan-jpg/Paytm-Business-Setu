@@ -117,7 +117,7 @@ export const ProfileTab: React.FC = () => {
                 <Phone size={14} className="text-[#00BAF2]" />
                 <div>
                   <span className="text-[10px] text-slate-400">Registered Phone</span>
-                  <p className="font-mono font-bold text-slate-800">+91 98112 88910</p>
+                  <p className="font-mono font-bold text-slate-800">+91 1234567890</p>
                 </div>
               </div>
 
@@ -159,3 +159,4 @@ export const ProfileTab: React.FC = () => {
     </div>
   );
 };
+
