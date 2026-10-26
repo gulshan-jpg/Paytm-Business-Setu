@@ -3,13 +3,14 @@ import {
   LayoutDashboard, 
   ShieldCheck, 
   Zap, 
-  Tag, 
   Receipt,
   Store,
   ChevronRight,
   QrCode,
   BookOpen,
-  UserCheck
+  UserCheck,
+  Bot,
+  Sparkles
 } from 'lucide-react';
 import { TabType } from '../types';
 
@@ -18,124 +19,131 @@ interface SidebarProps {
   onSelectTab: (tab: TabType) => void;
   onOpenQrModal: () => void;
   urgentLoanClaimed?: boolean;
-  offersCount?: number;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
   activeTab,
   onSelectTab,
   onOpenQrModal,
-  urgentLoanClaimed = false,
-  offersCount = 3
+  urgentLoanClaimed = false
 }) => {
   const navItems = [
     {
       id: 'overview' as TabType,
       label: 'Overview',
       icon: LayoutDashboard,
-      badge: 'Live'
+      badge: 'Live',
+      isCoreModule: false
+    },
+    {
+      id: 'ask-priya' as TabType,
+      label: 'Ask Priya',
+      icon: Bot,
+      badge: 'Module 1',
+      description: 'Kirana Copilot & Store Intelligence',
+      isCoreModule: true
     },
     {
       id: 'verify-refund' as TabType,
       label: 'Verify & Refund Shield',
       icon: ShieldCheck,
-      badge: 'Module 1',
-      description: 'Soundbox audio delay solver'
+      badge: 'Module 2',
+      description: 'Sub-380ms UTR & Auto-Refund',
+      isCoreModule: true
     },
     {
       id: 'udhaar-ledger' as TabType,
       label: 'Udhaar Ledger & Recovery',
       icon: BookOpen,
-      badge: 'Module 2',
-      description: 'OCR & Offer Exclusion'
+      badge: 'Module 3',
+      description: 'OCR & WhatsApp Dynamic QR',
+      isCoreModule: true
     },
     {
       id: 'urgent-loan' as TabType,
       label: 'AI Statement & Urgent Loan',
       icon: Zap,
-      badge: 'Module 3',
-      description: 'Rs. 5,000 Zero-cost credit'
-    },
-    {
-      id: 'merchant-offers' as TabType,
-      label: 'Check Merchant Offers',
-      icon: Tag,
       badge: 'Module 4',
-      description: 'Repeat customer engine'
+      description: 'Rs. 5,000 Zero-cost credit',
+      isCoreModule: true
     },
     {
       id: 'transactions-settlements' as TabType,
       label: 'Transactions & Settlements',
       icon: Receipt,
-      badge: '142 Txns'
+      badge: '142 Txns',
+      isCoreModule: false
     },
     {
       id: 'profile' as TabType,
       label: 'Merchant Profile & KYC',
       icon: UserCheck,
       badge: 'KYC',
-      description: 'GSTIN, PAN & Bank'
+      description: 'GSTIN, PAN & Bank',
+      isCoreModule: false
     }
   ];
 
   return (
-    <aside className="w-72 bg-white border-r border-[#E2E8F0] flex flex-col justify-between shrink-0 select-none hidden md:flex min-h-[calc(100vh-61px)]">
-      <div className="p-4 space-y-6">
+    <aside className="w-72 bg-white dark:bg-[#111827] border-r border-[#E2E8F0] dark:border-slate-800 flex flex-col justify-between shrink-0 select-none hidden md:flex min-h-[calc(100vh-61px)] transition-colors duration-200">
+      <div className="p-4 space-y-5">
         
+        {/* Merchant Store Quick Card */}
         <div 
           onClick={() => onSelectTab('profile')}
-          className="bg-[#F4F6F9] hover:bg-sky-50/60 rounded-lg p-3 border border-[#E2E8F0] hover:border-[#00BAF2] cursor-pointer transition-all group"
+          className="bg-[#F4F6F9] dark:bg-slate-800/80 hover:bg-sky-50/60 dark:hover:bg-slate-700/60 rounded-xl p-3 border border-[#E2E8F0] dark:border-slate-700 hover:border-[#00BAF2] cursor-pointer transition-all group"
         >
-          <div className="flex items-center justify-between text-xs text-[#64748B]">
+          <div className="flex items-center justify-between text-xs text-[#64748B] dark:text-slate-400">
             <span className="font-semibold uppercase text-[10px] tracking-wider group-hover:text-[#00BAF2]">Active Terminal</span>
-            <span className="flex items-center gap-1 font-bold text-[#10B981] bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200 text-[10px]">
+            <span className="flex items-center gap-1 font-bold text-[#10B981] bg-emerald-50 dark:bg-emerald-950/40 px-1.5 py-0.5 rounded border border-emerald-200 dark:border-emerald-800 text-[10px]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse" />
               Online
             </span>
           </div>
-          <p className="text-xs font-bold text-[#002970] mt-1 truncate group-hover:text-[#00BAF2] transition-colors">
+          <p className="text-xs font-bold text-[#002970] dark:text-white mt-1 truncate group-hover:text-[#00BAF2] transition-colors">
             Sharma General Store
           </p>
-          <div className="flex items-center justify-between text-[11px] text-[#64748B] font-mono mt-0.5">
+          <div className="flex items-center justify-between text-[11px] text-[#64748B] dark:text-slate-400 font-mono mt-0.5">
             <span>MID: #PTM889012</span>
-            <span className="text-[#00BAF2] font-sans font-bold text-[10px]">View Profile</span>
+            <span className="text-[#00BAF2] text-[10px] font-sans font-bold flex items-center">
+              KYC Active <ChevronRight size={10} />
+            </span>
           </div>
         </div>
 
-        <div className="space-y-1.5">
-          <p className="px-3 text-[11px] font-bold text-[#64748B] uppercase tracking-wider">
-            Navigation Menu
+        {/* Navigation Item Links */}
+        <nav className="space-y-1">
+          <p className="px-3 text-[10px] font-black uppercase tracking-wider text-[#64748B] dark:text-slate-400 mb-2">
+            Main Operations Menu
           </p>
-
           {navItems.map((item) => {
-            const isActive = activeTab === item.id;
             const Icon = item.icon;
-
+            const isActive = activeTab === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => onSelectTab(item.id)}
-                className={`w-full flex items-center justify-between px-3.5 py-3 rounded-lg text-left transition-all group ${
-                  isActive
-                    ? 'bg-[#002970] text-white shadow-sm'
-                    : 'text-[#0F172A] hover:bg-[#F4F6F9]'
+                className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left text-xs transition-all ${
+                  isActive 
+                    ? 'bg-[#002970] text-white font-bold shadow-sm' 
+                    : 'text-[#0F172A] dark:text-slate-200 hover:bg-[#F4F6F9] dark:hover:bg-slate-800 font-semibold'
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <div className={`p-1.5 rounded-md transition-colors ${
+                <div className="flex items-center gap-2.5 truncate">
+                  <div className={`p-1.5 rounded-lg ${
                     isActive 
                       ? 'bg-[#00BAF2] text-[#002970]' 
-                      : 'bg-[#F4F6F9] text-[#002970] group-hover:bg-[#E2E8F0]'
+                      : item.isCoreModule 
+                        ? 'bg-[#00BAF2]/10 text-[#00BAF2] dark:bg-[#00BAF2]/20' 
+                        : 'bg-slate-100 dark:bg-slate-800 text-[#002970] dark:text-slate-300'
                   }`}>
-                    <Icon size={18} />
+                    <Icon size={16} />
                   </div>
-                  <div>
-                    <span className={`text-xs font-bold block ${isActive ? 'text-white' : 'text-[#0F172A]'}`}>
-                      {item.label}
-                    </span>
+                  <div className="truncate">
+                    <span className="block truncate">{item.label}</span>
                     {item.description && (
-                      <span className={`text-[10px] block truncate max-w-[140px] ${
-                        isActive ? 'text-sky-200' : 'text-[#64748B]'
+                      <span className={`block text-[10px] font-normal truncate ${
+                        isActive ? 'text-sky-200' : 'text-[#64748B] dark:text-slate-400'
                       }`}>
                         {item.description}
                       </span>
@@ -143,45 +151,62 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1">
-                  <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded font-mono ${
-                    isActive
-                      ? 'bg-white/20 text-[#00BAF2]'
-                      : 'bg-slate-100 text-[#64748B]'
+                {item.badge && (
+                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0 ${
+                    isActive 
+                      ? 'bg-white/20 text-white' 
+                      : item.isCoreModule
+                        ? 'bg-[#00BAF2] text-[#002970] font-black'
+                        : 'bg-slate-100 dark:bg-slate-800 text-[#64748B] dark:text-slate-300'
                   }`}>
                     {item.badge}
                   </span>
-                  <ChevronRight size={13} className={isActive ? 'text-[#00BAF2]' : 'text-slate-300 group-hover:text-slate-500'} />
-                </div>
+                )}
               </button>
             );
           })}
+        </nav>
+
+        {/* Prototype Banner for Unbuilt Paytm Modules */}
+        <div className="pt-2">
+          <p className="px-3 text-[10px] font-black uppercase tracking-wider text-[#64748B] dark:text-slate-400 mb-1.5">
+            Paytm Enterprise Apps
+          </p>
+          <div className="space-y-1">
+            {[
+              { label: 'Paytm Soundbox Ads Hub', tag: 'Demo' },
+              { label: 'Merchant Khata Reconciliation', tag: 'Demo' },
+              { label: 'Paytm Food & Billing POS', tag: 'Preview' }
+            ].map((p, idx) => (
+              <div 
+                key={idx}
+                className="px-3 py-1.5 rounded-lg text-[11px] text-[#64748B] dark:text-slate-400 flex items-center justify-between opacity-70 hover:opacity-100 transition-opacity cursor-not-allowed"
+                title="Prototype simulation only"
+              >
+                <span>{p.label}</span>
+                <span className="text-[9px] bg-slate-100 dark:bg-slate-800 text-slate-500 px-1 rounded border border-slate-200 dark:border-slate-700">
+                  {p.tag}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>
 
-      <div className="p-4 border-t border-[#E2E8F0] space-y-3">
-        <div className="bg-gradient-to-br from-sky-50 to-blue-50/60 p-3.5 rounded-lg border border-sky-200/80">
-          <div className="flex items-center gap-2">
-            <div className="p-1.5 rounded-md bg-[#002970] text-white">
-              <QrCode size={16} />
-            </div>
-            <div>
-              <p className="text-xs font-bold text-[#002970]">Store QR Standee</p>
-              <p className="text-[10px] text-[#64748B]">Scan to pay with any UPI app</p>
-            </div>
-          </div>
-          <button
-            onClick={onOpenQrModal}
-            className="w-full mt-2.5 bg-[#00BAF2] hover:bg-[#009EDC] text-white py-1.5 px-3 rounded text-xs font-bold transition-all shadow-sm active:scale-95"
-          >
-            Download QR Poster
-          </button>
-        </div>
+      {/* Bottom Download Banner */}
+      <div className="p-4 border-t border-[#E2E8F0] dark:border-slate-800 space-y-3">
+        <button
+          onClick={onOpenQrModal}
+          className="w-full bg-gradient-to-r from-[#00BAF2] to-[#009EDC] hover:from-[#009EDC] hover:to-[#002970] text-white py-2 px-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 shadow-xs transition-all active:scale-95"
+        >
+          <QrCode size={14} />
+          <span>Print Store QR Standee</span>
+        </button>
 
-        <div className="text-[11px] text-[#64748B] flex items-center justify-between px-1">
-          <span>Paytm Business Setu</span>
-          <span className="font-semibold text-[#002970]">Enterprise Core</span>
+        <div className="flex items-center justify-between text-[10px] text-[#64748B] dark:text-slate-400 font-mono">
+          <span>Paytm Core v4.8</span>
+          <span className="text-[#10B981] font-bold">Encrypted 256-bit</span>
         </div>
       </div>
     </aside>

@@ -3,9 +3,9 @@ import {
   LayoutDashboard, 
   ShieldCheck, 
   Zap, 
-  Tag, 
   Receipt,
   BookOpen,
+  Bot,
   LucideIcon
 } from 'lucide-react';
 import { TabType } from '../types';
@@ -30,77 +30,68 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
   }[] = [
     {
       id: 'overview',
-      label: 'Overview',
+      label: 'Home',
       icon: LayoutDashboard
+    },
+    {
+      id: 'ask-priya',
+      label: 'Ask Priya',
+      icon: Bot,
+      isSpecial: true,
+      badge: 'AI'
     },
     {
       id: 'verify-refund',
       label: 'Verify',
       icon: ShieldCheck,
-      badge: 'M1'
+      badge: 'M2'
     },
     {
       id: 'udhaar-ledger',
       label: 'Khata AI',
       icon: BookOpen,
-      badge: 'M2'
-    },
-    {
-      id: 'urgent-loan',
-      label: 'Urgent Loan',
-      icon: Zap,
-      isSpecial: true,
       badge: 'M3'
     },
     {
-      id: 'merchant-offers',
-      label: 'Offers',
-      icon: Tag,
+      id: 'urgent-loan',
+      label: '0% Loan',
+      icon: Zap,
       badge: 'M4'
     },
     {
       id: 'transactions-settlements',
-      label: 'Settlements',
+      label: 'Passbook',
       icon: Receipt,
       badge: transactionsCount > 0 ? transactionsCount : undefined
     }
   ];
 
   return (
-    <nav 
-      aria-label="Mobile Bottom Navigation" 
-      className="md:hidden fixed bottom-0 left-0 right-0 z-30 bg-white border-t border-[#E2E8F0] shadow-[0_-4px_16px_rgba(0,41,112,0.08)] select-none"
-    >
-      <div className="max-w-md mx-auto px-2 flex items-center justify-between h-16">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-[#111827]/95 backdrop-blur-md border-t border-[#E2E8F0] dark:border-slate-800 md:hidden shadow-lg px-2 py-1 transition-colors duration-200">
+      <div className="flex items-center justify-around max-w-lg mx-auto">
         {navItems.map((item) => {
-          const isActive = activeTab === item.id;
           const Icon = item.icon;
+          const isActive = activeTab === item.id;
 
           if (item.isSpecial) {
             return (
               <button
                 key={item.id}
                 onClick={() => onSelectTab(item.id)}
-                className="relative -top-3 flex flex-col items-center focus:outline-none group"
+                className="flex flex-col items-center justify-center -mt-5 group focus:outline-none"
               >
-                <div 
-                  className={`w-12 h-12 rounded-full flex items-center justify-center transition-all shadow-md ${
-                    isActive 
-                      ? 'bg-[#002970] ring-4 ring-[#00BAF2]/30 text-[#00BAF2] scale-105' 
-                      : 'bg-[#00BAF2] hover:bg-[#009EDC] text-white group-hover:scale-105'
-                  }`}
-                >
-                  <Icon size={22} className={isActive ? 'animate-pulse' : ''} />
+                <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-md transition-all ${
+                  isActive 
+                    ? 'bg-[#002970] text-[#00BAF2] ring-3 ring-[#00BAF2] scale-105' 
+                    : 'bg-gradient-to-tr from-[#002970] to-[#00BAF2] text-white hover:scale-105'
+                }`}>
+                  <Icon size={22} className="animate-pulse" />
                 </div>
-                <div className="flex items-center gap-1 mt-1">
-                  <span 
-                    className={`text-[10px] font-bold tracking-tight ${
-                      isActive ? 'text-[#002970]' : 'text-slate-600'
-                    }`}
-                  >
-                    {item.label}
-                  </span>
-                </div>
+                <span className={`text-[10px] font-bold mt-1 tracking-tight ${
+                  isActive ? 'text-[#002970] dark:text-[#00BAF2]' : 'text-[#64748B] dark:text-slate-400'
+                }`}>
+                  {item.label}
+                </span>
               </button>
             );
           }
@@ -109,40 +100,26 @@ export const BottomNavigation: React.FC<BottomNavigationProps> = ({
             <button
               key={item.id}
               onClick={() => onSelectTab(item.id)}
-              className={`flex-1 flex flex-col items-center justify-center py-1.5 px-1 relative transition-all focus:outline-none ${
-                isActive ? 'text-[#002970]' : 'text-[#64748B]'
+              className={`flex flex-col items-center justify-center py-1.5 px-2 rounded-lg transition-all relative ${
+                isActive 
+                  ? 'text-[#002970] dark:text-[#00BAF2] font-black' 
+                  : 'text-[#64748B] dark:text-slate-400 hover:text-[#002970] font-medium'
               }`}
             >
-              {isActive && (
-                <span className="absolute top-0 left-1/2 -translate-x-1/2 h-0.5 w-8 bg-[#00BAF2] rounded-full" />
-              )}
-
               <div className="relative">
-                <Icon 
-                  size={19} 
-                  className={`transition-transform ${
-                    isActive 
-                      ? 'text-[#00BAF2] stroke-[2.4] scale-110' 
-                      : 'text-[#64748B]'
-                  }`} 
-                />
-
-                {item.badge !== undefined && (
-                  <span className="absolute -top-1.5 -right-3 min-w-[14px] h-3.5 px-0.5 rounded-full bg-[#00BAF2] text-white text-[9px] font-bold flex items-center justify-center leading-none font-mono">
+                <Icon size={18} className={isActive ? 'stroke-[2.5]' : 'stroke-2'} />
+                {item.badge && (
+                  <span className="absolute -top-1 -right-2 text-[8px] font-bold bg-[#00BAF2] text-white px-1 rounded-full leading-tight">
                     {item.badge}
                   </span>
                 )}
               </div>
-
-              <span 
-                className={`text-[10px] mt-1 truncate max-w-[64px] ${
-                  isActive 
-                    ? 'font-bold text-[#002970]' 
-                    : 'font-medium text-[#64748B]'
-                }`}
-              >
+              <span className="text-[10px] mt-1 tracking-tight">
                 {item.label}
               </span>
+              {isActive && (
+                <span className="w-1.5 h-1.5 rounded-full bg-[#00BAF2] mt-0.5" />
+              )}
             </button>
           );
         })}

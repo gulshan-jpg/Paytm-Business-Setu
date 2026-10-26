@@ -1,62 +1,111 @@
-# Paytm Business Setu (Paytm Saathi — Vyapar AI)
+# Paytm Business Setu (Vyapar AI)
 
-Autonomous AI copilot for Kirana commerce:  
-* **Vision Shield**: Sub-380ms UPI screenshot fraud & tamper checks with UTR auto-resolution.  
-* **Neural Bahi-Khata**: OCR digitisation of paper ledgers + automated WhatsApp collections & discount revoking.  
-* **Liquidity Underwriter**: Intraday QR velocity loans at 0% APR via EOD batch recovery.
-
-Production-ready merchant dashboard prototype designed for a live 3-minute hackathon pitch, strictly conforming to official Paytm enterprise branding and design hierarchy with zero emojis.
+> **Autonomous Multimodal AI Operating System for Bharat’s Kirana Merchants**  
+> Built for the **Paytm Hackathon** by **Team RONIX**
 
 ---
 
-## Official Paytm Enterprise Palette
-
-| Element | Color Name | Hex Code | Purpose |
-| :--- | :--- | :--- | :--- |
-| **Primary Navy** | Paytm Deep Navy | `#002970` | Top header, active nav anchors, dark buttons |
-| **Primary Blue** | Paytm Electric Cyan | `#00BAF2` | Primary CTA buttons, active accents, badges |
-| **Hover Blue** | Paytm Darker Blue | `#009EDC` | Hover transitions on primary buttons |
-| **Background Slate** | Off-White / Light Gray | `#F4F6F9` | Main page background |
-| **Card Surface** | Pure White | `#FFFFFF` | Metric containers with `#E2E8F0` border |
-| **Success Green** | Paytm Success Green | `#10B981` | Positive revenue, verified UTR, instant credit |
-| **Warning Amber** | Alert Amber | `#F59E0B` | Stuck payments, bank switch lag |
-| **Main Text** | Dark Slate | `#0F172A` | Primary typography |
-| **Muted Text** | Subtitle Gray | `#64748B` | Labels, timestamps, secondary information |
+## 👥 Team Information — Team RONIX
+* **Gulshan Gautam**
+* **Dhananjay Sharma**
+* **Harshit Patra**
 
 ---
 
-## Core Architecture & Value Modules
+## 📌 Executive Summary
 
-### 1. Top Header Bar
-* **Official Branding**: Paytm Business Setu | Vyapar AI
-* **Merchant Outlet**: Sharma General Store — Merchant ID: `#PTM889012`
-* **Hardware Status**: Paytm AI Soundbox v3 | Status: Online | Battery: 92% | 4G Active
-* **Quick Action**: Download Store QR Poster
+India's 13+ million Kirana stores handle over \$600B in commerce, yet daily operations are plagued by:
+1. **Counter Disputes & Audio Lag**: Telecom network lag delays Soundbox chimes, creating awkward 2–3 minute checkout stalemates or fraud via spoofed UPI screenshots.
+2. **Unorganized Physical "Bahi-Khata"**: 25–35% of Kirana working capital is trapped in handwritten paper ledgers, causing forgotten dues and awkward collection conversations.
+3. **Emergency Working Capital Gaps**: Traditional banks require CIBIL scores and collateral, leaving small merchants stranded when morning inventory distributors arrive.
+4. **Data Blindness**: Kirana owners make critical decisions (store open/close timings, stocking, rush hours) based solely on intuition.
 
-### 2. Navigation Sidebar Tabs
-1. **Overview**: Collections (Rs. 18,450), 142 txns, hourly rush chart, recent payments stream, and quick shortcuts.
-2. **Verify & Refund Shield (Vision Shield)**: Solves Soundbox audio lag & telecom delays. Instant OCR matches UTR (#984102938102) in 380ms. For stuck customer debits, triggers automated bank auto-refund while generating a fresh dynamic Re-Pay QR code to eliminate retail disputes.
-3. **AI Statement & Urgent Loan (Liquidity Underwriter)**: 24-hour zero-cost working capital for retail kirana inventory. Analyzes daily QR velocity (Rs. 14,500/day across 120 txns) and bank health score (94/100). Disburses Rs. 5,000 credit instantly to HDFC Bank Account ****4102 via Paytm Payouts with auto-deduction at 11:00 PM tonight (Rs. 0 interest).
-4. **Neural Bahi-Khata (Udhaar Ledger)**: Paper ledger OCR digitization, automated customer balance tracking, and WhatsApp payment collection reminders.
-5. **Check Merchant Offers**: Customer loyalty & repeat engine with full CRUD offer management:
-   - **Add Offer (Create)**: "+ Create New Offer" modal to define custom discounts, minimum spend basket thresholds, validity windows, and target audiences.
-   - **Edit Offer (Update)**: Pre-filled modal to update discount amounts, spend requirements, or validity on live offers.
-   - **Delete Offer (Delete)**: Confirmation prompt to safely decommission retired campaigns with instant preview fallback.
-   - **Real-Time Customer Mobile Preview Sync**: Right-side customer smartphone simulator reflects active offer selections, edits, and additions instantaneously.
-6. **Transactions & Settlements**: Full transaction ledger, auto nightly 11:00 PM settlement schedule, and instant IMPS transfer modal.
+**Paytm Business Setu** transforms the Paytm merchant ecosystem into an autonomous, proactive Kirana Operating System using multimodal AI, computer vision, and real-time velocity underwriting.
 
 ---
 ## Deployed Link-https://paytm-business-setu.vercel.app/
 
-## Local Development & Production Build
+## 🚀 4 Core Pillars (Deeply Powered by AI)
+
+### 1. 🎙️ Ask Priya — Kirana Multimodal AI Business Copilot
+* **Multimodal Voice & Chat Assistant**: Natural voice and text Kirana business advisor supporting Hindi & English queries.
+* **Autonomous Telemetry Scanning**: Continuously scans live Soundbox transactions, hourly footfall, settlement balances, and pending udhaar ledgers.
+* **Operational Intelligence**: Provides instant data-driven answers:
+  * *"Aaj ki sales kitne ki hui?"* (Sales comparisons & weekday velocity).
+  * *"Dukan kab band karni chahiye aur peak rush kab hai?"* (Pinpoints peak revenue windows, e.g., 5:45 PM – 9:15 PM driving 62% of gross revenue, and recommends ideal restock windows).
+
+### 2. 🛡️ Vision Shield — Sub-380ms Neural OCR & Dispute Arbiter
+* **Instant Screenshot Verification**: Sub-380ms computer vision OCR that extracts and verifies 12-digit UTR numbers across Google Pay, PhonePe, Paytm, and BHIM screenshots.
+* **Anti-Fraud & Glare Protection**: Detects fake payment screenshot apps and high-glare/blurry images. When image confidence falls below the 80% safety floor, auto-reversal is blocked and merchant fallback UTR verification is triggered.
+* **Auto-Refund & Dynamic Re-Pay QR**: For authentic payments stuck in bank transit, dispatches auto-refund webhooks and displays a dynamic Re-Pay QR for immediate checkout.
+
+### 3. 📖 Neural Bahi-Khata — Document AI & Intelligent Udhaar Recovery
+* **Paper Register OCR Scanner**: 1-tap AI scan that reads handwritten physical Hindi/English ledger entries and converts them into structured digital records.
+* **Manual Entry & In-Line Edit**: Full add, edit, search, and delete capabilities for customer udhaar.
+* **Automated WhatsApp Payment Reminders**: Sends official WhatsApp payment reminders with dynamic 1-tap instant Paytm QR links and automated 24-hour anti-spam cooldowns.
+
+### 4. ⚡ 0% Urgent Capital — Velocity-Based Machine Learning Underwriting
+* **Zero-CIBIL Algorithmic Underwriting**: Analyzes live daily QR payment velocity (e.g., ₹14,500/day across 120+ payments) rather than traditional credit scores.
+* **Interactive Dynamic Sales Slider**: Interactive slider (₹5,000 to ₹60,000/day) that dynamically calculates instantaneous 35% credit limits.
+* **Instant 60-Second Micro-Disbursal**: Disburses emergency restock credit (e.g., ₹5,000) directly via Paytm Payouts with automatic 11:00 PM settlement deduction at 0% APR.
+
+---
+
+## 📱 Cross-Platform Experience: Desktop & Dedicated iPhone 16 Pro Max View
+
+* **Desktop View**: Enterprise-grade multi-pane merchant dashboard tailored to official Paytm enterprise branding (`#002970` Deep Navy, `#00BAF2` Electric Cyan).
+* **Dedicated iPhone 16 Pro Max View**: 1-tap switch to a dedicated mobile shell (430px × 932px native viewport ratio) with native iOS Dynamic Island, tap-to-upload screenshot zone, paper khata scanner, and sales velocity slider.
+* **Light / Dark Mode**: Seamless high-contrast theme switcher with local storage persistence.
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer | Technologies & Frameworks |
+| :--- | :--- |
+| **Frontend & Mobile Shell** | React 18, TypeScript, Vite, Tailwind CSS, Lucide Icons |
+| **Generative & Conversational AI** | Natural Language Processing, Time-Series Pattern Forecasting |
+| **Computer Vision / OCR** | Document OCR pipeline for paper registers & UPI payment screenshots |
+| **Speech Engine** | Web Speech API, Synthetic Audio Chimes, Voice Synthesis (Hindi/English) |
+| **FinTech & Payments Rails** | NPCI Settlement Webhooks, Paytm QR Generator, UPI Switch APIs |
+
+---
+
+## 🏆 USP (Unique Selling Proposition)
+
+1. **Grounded in Live Kirana Reality**: Ask Priya is hardwired to live Soundbox streams and payment velocity, not abstract generic knowledge.
+2. **Sub-Second Fraud Arbiter**: Eliminates customer counter conflict with instant 380ms verification and auto-recovery.
+3. **Zero-Friction Paper Digitization**: Bridges India's offline-to-online transition with 1-tap handwritten notebook scanning.
+4. **Cashflow-Collateralized Lending**: Instant 0% restock credit repaid automatically from nightly settlements without paperwork.
+
+---
+
+## 💼 Business Model
+
+1. **Freemium Core + Enterprise Suite (SaaS)**: Core Soundbox telemetry and dispute shielding remain free; advanced inventory forecasting and automated WhatsApp marketing available via *Setu Pro*.
+2. **WhatsApp Recovery Convenience Fee**: Micro-transaction fee on digital udhaar recovered via automated WhatsApp QR links.
+3. **Underwriting Spread & Merchant Payouts**: Commission on emergency restock credit lines in partnership with NBFCs and lending partners.
+4. **Increased Merchant Deposit Float**: Automated 11:00 PM deduction increases daily ecosystem float.
+
+---
+
+## 💻 Local Setup & Development
 
 ```bash
+# Clone repository
+git clone https://github.com/wishsagarks/Paytm-Business-Setu.git
+cd Paytm-Business-Setu
+
 # Install dependencies
 npm install
 
 # Start development server
 npm run dev
 
-# Build for production
+# Run production build & verify types
 npm run build
 ```
+
+---
+
+*Developed by Team RONIX (Gulshan Gautam, Dhananjay Sharma, Harshit Patra) for the Paytm Hackathon.*

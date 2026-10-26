@@ -224,7 +224,7 @@ export const UdhaarLedgerTab: React.FC<UdhaarLedgerTabProps> = ({
             className="flex items-center gap-1.5 bg-[#00BAF2] hover:bg-[#009EDC] text-white font-bold px-4 py-2 rounded-lg text-xs transition-all shadow-sm active:scale-95"
           >
             <Plus size={15} />
-            <span>+ Add Manual Udhaar Entry</span>
+            <span>Add Manual Udhaar Entry</span>
           </button>
         </div>
       </div>
@@ -255,18 +255,18 @@ export const UdhaarLedgerTab: React.FC<UdhaarLedgerTabProps> = ({
           </span>
         </div>
 
-        <div className="bg-white rounded-xl p-4 border border-red-200 shadow-paytm-card space-y-1 bg-red-50/20">
+        <div className="bg-white rounded-xl p-4 border border-sky-200 shadow-paytm-card space-y-1 bg-sky-50/20">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-bold text-red-700 uppercase tracking-wider">
-              Excluded From Offers
+            <span className="text-[10px] font-bold text-[#002970] uppercase tracking-wider">
+              WhatsApp Reminders
             </span>
-            <span className="w-2 h-2 rounded-full bg-[#EF4444] animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-[#00BAF2] animate-pulse" />
           </div>
-          <p className="text-2xl font-black text-[#EF4444] tracking-tight font-mono">
-            {excludedFromOffersCount} Customers
+          <p className="text-2xl font-black text-[#002970] tracking-tight font-mono">
+            {ledger.filter(e => e.status === 'Reminder Sent').length} Sent Today
           </p>
-          <span className="text-[10px] text-red-600 block font-semibold">
-            &gt; 7 Days Overdue (Coupons Revoked)
+          <span className="text-[10px] text-sky-700 block font-semibold">
+            Dispatched with 1-Tap Paytm QR
           </span>
         </div>
 
@@ -432,7 +432,7 @@ export const UdhaarLedgerTab: React.FC<UdhaarLedgerTabProps> = ({
                     <th className="py-2.5 px-3">Customer Details</th>
                     <th className="py-2.5 px-3">Amount</th>
                     <th className="py-2.5 px-3">Due Status</th>
-                    <th className="py-2.5 px-3 text-center">Store Offer Status</th>
+                    <th className="py-2.5 px-3 text-center">Reminder &amp; Recovery Status</th>
                     <th className="py-2.5 px-3 text-right">Actions</th>
                   </tr>
                 </thead>
@@ -511,21 +511,26 @@ export const UdhaarLedgerTab: React.FC<UdhaarLedgerTabProps> = ({
                             )}
                           </td>
 
-                          {/* 3. DYNAMIC OFFER EXCLUSION & PENALTY ENGINE STATUS */}
+                          {/* 3. REMINDER & RECOVERY STATUS */}
                           <td className="py-3 px-3 text-center">
                             {entry.status === 'Paid' ? (
                               <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#10B981] bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
                                 <ShieldCheck size={11} />
-                                Offers Restored
+                                Account Settled
                               </span>
-                            ) : entry.isExcludedFromOffers ? (
-                              <span className="inline-flex items-center gap-1 text-[10px] font-bold text-red-700 bg-red-50 border border-red-200 px-2 py-0.5 rounded-full">
-                                <Ban size={11} className="text-red-600" />
-                                Excluded from Offers (Overdue)
+                            ) : entry.status === 'Reminder Sent' ? (
+                              <span className="inline-flex items-center gap-1 text-[10px] font-bold text-sky-700 bg-sky-50 border border-sky-200 px-2 py-0.5 rounded-full">
+                                <MessageSquare size={11} className="text-[#00BAF2]" />
+                                Reminder Sent Today
+                              </span>
+                            ) : entry.daysOverdue > 0 ? (
+                              <span className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full">
+                                <Clock size={11} className="text-amber-600" />
+                                Overdue ({entry.daysOverdue}d) • Send Reminder
                               </span>
                             ) : (
                               <span className="inline-flex items-center gap-1 text-[10px] font-medium text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full">
-                                Eligible for Deals
+                                Within Credit Term
                               </span>
                             )}
                           </td>
@@ -547,7 +552,7 @@ export const UdhaarLedgerTab: React.FC<UdhaarLedgerTabProps> = ({
                                 <button
                                   onClick={() => handleMarkPaidAction(entry)}
                                   className="p-1.5 rounded-md hover:bg-emerald-50 text-[#10B981] transition-colors"
-                                  title="Mark Paid & Restore Offers"
+                                  title="Mark Paid & Settle Account"
                                 >
                                   <CheckCircle2 size={14} />
                                 </button>
@@ -946,7 +951,7 @@ export const UdhaarLedgerTab: React.FC<UdhaarLedgerTabProps> = ({
             </div>
 
             <div>
-              <h3 className="text-base font-bold text-[#002970]">Udhaar Cleared &amp; Offers Restored</h3>
+              <h3 className="text-base font-bold text-[#002970]">Udhaar Cleared Successfully</h3>
               <p className="text-xs text-[#10B981] font-semibold mt-0.5">
                 {clearedReceiptEntry.name} is now eligible for all store deals
               </p>

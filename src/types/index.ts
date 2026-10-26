@@ -3,9 +3,8 @@ export type TabType =
   | 'verify-refund'
   | 'udhaar-ledger'
   | 'urgent-loan'
-  | 'merchant-offers'
   | 'transactions-settlements'
-  | 'profile';
+  | 'profile' | 'ask-priya';
 
 export type PaymentMethod = 'Paytm UPI' | 'Soundbox' | 'Paytm Wallet' | 'RuPay Card' | 'Net Banking';
 export type PaymentStatus = 'Success' | 'Refunded' | 'Pending';
@@ -192,3 +191,5 @@ export interface AssistantQuery {
   }[];
   details: string;
 }
+
+
